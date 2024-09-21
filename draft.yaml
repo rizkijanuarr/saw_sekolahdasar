@@ -1,0 +1,28 @@
+models:
+  Kriteria:
+    kriteria_kode: string
+    kriteria_nama: string
+    kriteria_tipe: enum:Benefit,Cost
+    kriteria_bobot: integer min:1 max:5
+    relationships:
+      hasMany: SubKriteria, Asessment
+
+  SubKriteria:
+    kriteria_id: foreign nullable
+    sub_kriteria_nama: string
+    sub_kriteria_bobot: integer min:1 max:5
+    relationships:
+      hasMany: Asessment
+
+  Sekolah:
+    nama_sekolah: string
+    alamat_sekolah: string
+    no_telp_sekolah: string
+    relationships:
+      hasMany: Asessment
+
+  Asessment:
+    sekolah_id: foreign nullable
+    kriteria_id: foreign nullable
+    sub_kriteria_id: foreign nullable
+    skor: decimal:5,2 nullable

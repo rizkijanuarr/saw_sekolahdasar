@@ -1,0 +1,27 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
+class Asessment extends Model
+{
+    use HasFactory;
+
+    public function sekolah(): BelongsTo
+    {
+        return $this->belongsTo(\App\Models\Sekolah::class);
+    }
+
+    public function kriteria(): BelongsTo
+    {
+        return $this->belongsTo(\App\Models\Kriteria::class);
+    }
+
+    public function subKriteria(): BelongsTo
+    {
+        return $this->belongsTo(\App\Models\SubKriteria::class);
+    }
+}
