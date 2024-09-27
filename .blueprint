@@ -2,18 +2,30 @@ created:
     - database/factories/KriteriaFactory.php
     - database/factories/SubKriteriaFactory.php
     - database/factories/SekolahFactory.php
-    - database/factories/AsessmentFactory.php
-    - database/migrations/2024_09_21_153912_create_kriterias_table.php
-    - database/migrations/2024_09_21_153913_create_sub_kriterias_table.php
-    - database/migrations/2024_09_21_153914_create_sekolahs_table.php
-    - database/migrations/2024_09_21_153915_create_asessments_table.php
+    - database/factories/ListAsessmentFactory.php
+    - database/factories/NormalisasiAsessmentFactory.php
+    - database/factories/PerhitunganNormalisasiFactory.php
+    - database/factories/PerangkinganNormalisasiAsessmentFactory.php
+    - database/migrations/2024_09_26_143656_create_kriterias_table.php
+    - database/migrations/2024_09_26_143657_create_sub_kriterias_table.php
+    - database/migrations/2024_09_26_143658_create_sekolahs_table.php
+    - database/migrations/2024_09_26_143659_create_list_asessments_table.php
+    - database/migrations/2024_09_26_143700_create_normalisasi_asessments_table.php
+    - database/migrations/2024_09_26_143701_create_perhitungan_normalisasis_table.php
+    - database/migrations/2024_09_26_143702_create_perangkingan_normalisasi_asessments_table.php
     - app/Models/Kriteria.php
     - app/Models/SubKriteria.php
     - app/Models/Sekolah.php
-    - app/Models/Asessment.php
+    - app/Models/ListAsessment.php
+    - app/Models/NormalisasiAsessment.php
+    - app/Models/PerhitunganNormalisasi.php
+    - app/Models/PerangkinganNormalisasiAsessment.php
 models:
     User: { name: string, email: string, email_verified_at: 'timestamp nullable', password: string, remember_token: 'string:100 nullable' }
-    Kriteria: { kriteria_kode: string, kriteria_nama: string, kriteria_tipe: 'enum:Benefit,Cost', kriteria_bobot: 'integer min:1 max:5', relationships: { hasMany: 'SubKriteria, Asessment' } }
-    SubKriteria: { kriteria_id: 'foreign nullable', sub_kriteria_nama: string, sub_kriteria_bobot: 'integer min:1 max:5', relationships: { hasMany: Asessment } }
-    Sekolah: { nama_sekolah: string, alamat_sekolah: string, no_telp_sekolah: string, relationships: { hasMany: Asessment } }
-    Asessment: { sekolah_id: 'foreign nullable', kriteria_id: 'foreign nullable', sub_kriteria_id: 'foreign nullable', skor: 'decimal:5,2 nullable' }
+    Kriteria: { kriteria_kode: string, kriteria_nama: string, kriteria_tipe: 'enum:Benefit,Cost', kriteria_bobot: 'integer min:1 max:5', relationships: { hasMany: 'SubKriteria, ListAsessment, NormalisasiAsessment, PerhitunganNormalisasiAsessment, PerangkinganNormalisasiAsessment' } }
+    SubKriteria: { kriteria_id: 'foreign nullable', sub_kriteria_nama: string, sub_kriteria_bobot: 'integer min:1 max:5', relationships: { hasMany: 'ListAsessment, NormalisasiAsessment, PerhitunganNormalisasiAsessment, PerangkinganNormalisasiAsessment' } }
+    Sekolah: { nama_sekolah: string, alamat_sekolah: string, no_telp_sekolah: string, relationships: { hasMany: 'ListAsessment, NormalisasiAsessment, PerhitunganNormalisasiAsessment, PerangkinganNormalisasiAsessment' } }
+    ListAsessment: { sekolah_id: 'foreign nullable', kriteria_id: 'foreign nullable', sub_kriteria_id: 'foreign nullable' }
+    NormalisasiAsessment: { sekolah_id: 'foreign nullable', kriteria_id: 'foreign nullable', sub_kriteria_id: 'foreign nullable' }
+    PerhitunganNormalisasi: { sekolah_id: 'foreign nullable', kriteria_id: 'foreign nullable', sub_kriteria_id: 'foreign nullable', nilai_normalisasi_asessment: 'decimal:5,2 nullable' }
+    PerangkinganNormalisasiAsessment: { sekolah_id: 'foreign nullable', kriteria_id: 'foreign nullable', sub_kriteria_id: 'foreign nullable', skor: 'decimal:5,2 nullable' }

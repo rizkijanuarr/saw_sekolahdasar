@@ -10,8 +10,23 @@ class Sekolah extends Model
 {
     use HasFactory;
 
-    public function asessments(): HasMany
+    public function listAsessments(): HasMany
     {
-        return $this->hasMany(\App\Models\Asessment::class);
+        return $this->hasMany(ListAsessment::class);
+    }
+
+    public function normalisasiAsessments(): HasMany
+    {
+        return $this->hasMany(NormalisasiAsessment::class);
+    }
+
+    public function perhitunganNormalisasiAsessments(): HasMany
+    {
+        return $this->hasMany(PerhitunganNormalisasiAsessment::class);
+    }
+
+    public function perangkinganNormalisasiAsessments(): HasMany
+    {
+        return $this->hasMany(PerangkinganNormalisasiAsessment::class);
     }
 }

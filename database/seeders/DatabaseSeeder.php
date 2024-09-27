@@ -12,7 +12,12 @@ class DatabaseSeeder extends Seeder
             KriteriaSeeder::class,
             SubKriteriaSeeder::class,
             SekolahSeeder::class,
-            AsessmentSeeder::class,
+            ListAsessmentSeeder::class,
+            NormalisasiAsessmentSeeder::class,
+            PerhitunganNormalisasiSeeder::class,
+            PerangkinganNormalisasiSeeder::class,
+            RolesSeeder::class,
+            PermissionsSeeder::class,
             UserSeeder::class,
         ]);
 

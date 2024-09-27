@@ -5,23 +5,39 @@ models:
     kriteria_tipe: enum:Benefit,Cost
     kriteria_bobot: integer min:1 max:5
     relationships:
-      hasMany: SubKriteria, Asessment
+      hasMany: SubKriteria, ListAsessment, NormalisasiAsessment, PerhitunganNormalisasiAsessment, PerangkinganNormalisasiAsessment
 
   SubKriteria:
     kriteria_id: foreign nullable
     sub_kriteria_nama: string
     sub_kriteria_bobot: integer min:1 max:5
     relationships:
-      hasMany: Asessment
+      hasMany: ListAsessment, NormalisasiAsessment, PerhitunganNormalisasiAsessment, PerangkinganNormalisasiAsessment
 
   Sekolah:
     nama_sekolah: string
     alamat_sekolah: string
     no_telp_sekolah: string
     relationships:
-      hasMany: Asessment
+      hasMany: ListAsessment, NormalisasiAsessment, PerhitunganNormalisasiAsessment, PerangkinganNormalisasiAsessment
 
-  Asessment:
+  ListAsessment:
+    sekolah_id: foreign nullable
+    kriteria_id: foreign nullable
+    sub_kriteria_id: foreign nullable
+
+  NormalisasiAsessment:
+    sekolah_id: foreign nullable
+    kriteria_id: foreign nullable
+    sub_kriteria_id: foreign nullable
+
+  PerhitunganNormalisasi:
+    sekolah_id: foreign nullable
+    kriteria_id: foreign nullable
+    sub_kriteria_id: foreign nullable
+    nilai_normalisasi_asessment: decimal:5,2 nullable
+
+  PerangkinganNormalisasiAsessment:
     sekolah_id: foreign nullable
     kriteria_id: foreign nullable
     sub_kriteria_id: foreign nullable
