@@ -17,8 +17,8 @@
                     <div class="card-body">
 
                         <a class="btn btn-primary mr-1 btn-submit mb-3"
-                            href="{{ route('admin.perangkingan-asessment.pdf', ['page' => $sekolahs->currentPage()]) }}">Download
-                            PDF</a>
+                            href="{{ route('admin.perangkingan-asessment.pdf') }}">Download PDF</a>
+
 
                         <div class="table-responsive">
                             <div
@@ -63,9 +63,7 @@
                                     </tbody>
                                 </table>
 
-                                <div style="text-align: center">
-                                    {{ $sekolahs->links('vendor.pagination.bootstrap-5') }}
-                                </div>
+
 
 
                             </div>

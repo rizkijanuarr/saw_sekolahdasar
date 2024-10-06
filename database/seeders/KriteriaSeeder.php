@@ -11,31 +11,31 @@ class KriteriaSeeder extends Seeder
         $kriteriaData = [
             [
                 'kriteria_kode' => 'C1',
-                'kriteria_nama' => 'Akreditasi',
+                'kriteria_nama' => 'Fasilitas',
                 'kriteria_tipe' => 'Benefit',
                 'kriteria_bobot' => 5
             ],
             [
                 'kriteria_kode' => 'C2',
-                'kriteria_nama' => 'Fasilitas',
+                'kriteria_nama' => 'Jumlah Guru',
                 'kriteria_tipe' => 'Benefit',
                 'kriteria_bobot' => 4
             ],
             [
                 'kriteria_kode' => 'C3',
-                'kriteria_nama' => 'Jumlah Guru',
+                'kriteria_nama' => 'Akreditasi',
                 'kriteria_tipe' => 'Benefit',
                 'kriteria_bobot' => 3
             ],
             [
                 'kriteria_kode' => 'C4',
-                'kriteria_nama' => 'Biaya Pendidikan',
-                'kriteria_tipe' => 'Cost',
+                'kriteria_nama' => 'Prestasi',
+                'kriteria_tipe' => 'Benefit',
                 'kriteria_bobot' => 2
             ],
             [
                 'kriteria_kode' => 'C5',
-                'kriteria_nama' => 'Jarak ke Sekolah',
+                'kriteria_nama' => 'Rasio Siswa Dan Guru',
                 'kriteria_tipe' => 'Cost',
                 'kriteria_bobot' => 1
             ],

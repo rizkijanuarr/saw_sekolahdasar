@@ -18,6 +18,16 @@
 
                         <form action="{{ route('admin.list-asessment.store') }}" method="POST">
                             @csrf
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+
                             <div class="table-responsive">
                                 <div
                                     style="overflow-x: auto; scroll-behavior: smooth; scrollbar-width: thin; scrollbar-color: #888 #eee;">
@@ -65,10 +75,7 @@
                                                             <select
                                                                 name="sub_kriteria[{{ $sekolah->id }}][{{ $kriteria->id }}]"
                                                                 class="form-control">
-                                                                <option value=""
-                                                                    {{ !isset($asessments[$sekolah->id][$kriteria->id]) ? 'selected' : '' }}>
-                                                                    Pilih Sub Kriteria
-                                                                </option>
+                                                                <option value="">Pilih Sub Kriteria</option>
                                                                 @foreach ($kriteria->subKriterias as $subKriteria)
                                                                     <option value="{{ $subKriteria->id }}"
                                                                         {{ isset($asessments[$sekolah->id][$kriteria->id]) && $asessments[$sekolah->id][$kriteria->id]->sub_kriteria_id == $subKriteria->id ? 'selected' : '' }}>
@@ -78,6 +85,7 @@
                                                             </select>
                                                         </td>
                                                     @endforeach
+
                                                     <td class="text-center">
                                                         <button type="submit"
                                                             class="btn btn-sm btn-success">SIMPAN</button>

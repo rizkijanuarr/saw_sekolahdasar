@@ -15,6 +15,9 @@ Route::prefix('admin')->group(function () {
 
     Route::group(['middleware' => 'auth'], function () {
 
+        // list-assessment
+        Route::resource('/list-asessment', App\Http\Controllers\Admin\ListAsessmentController::class, ['except' => 'show', 'as' => 'admin']);
+
         //permissions
         Route::resource('/permissions', App\Http\Controllers\Admin\PermissionController::class, ['except' => ['show', 'create', 'edit', 'update', 'delete'], 'as' => 'admin']);
 
@@ -24,8 +27,7 @@ Route::prefix('admin')->group(function () {
         //users
         Route::resource('/user', App\Http\Controllers\Admin\UserController::class, ['except' => ['show'], 'as' => 'admin']);
 
-        // list-assessment
-        Route::resource('/list-asessment', App\Http\Controllers\Admin\ListAsessmentController::class, ['except' => 'show', 'as' => 'admin']);
+
 
         // normalisasi-asessment
         Route::resource('/normalisasi-asessment', App\Http\Controllers\Admin\NormalisasiAsessmentController::class, ['except' => 'show', 'as' => 'admin']);
@@ -37,7 +39,7 @@ Route::prefix('admin')->group(function () {
         Route::resource('/perangkingan-asessment', App\Http\Controllers\Admin\PerangkinganAsessmentController::class, ['except' => 'show', 'as' => 'admin']);
 
         // Route untuk PDF
-        Route::get('/perangkingan-asessment/pdf/{page?}', [App\Http\Controllers\Admin\PerangkinganAsessmentController::class, 'pdf'])->name('admin.perangkingan-asessment.pdf');
+        Route::get('/perangkingan-asessment/pdf', [App\Http\Controllers\Admin\PerangkinganAsessmentController::class, 'pdf'])->name('admin.perangkingan-asessment.pdf');
 
         // Dashboard
         Route::get('/dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin.dashboard.index');

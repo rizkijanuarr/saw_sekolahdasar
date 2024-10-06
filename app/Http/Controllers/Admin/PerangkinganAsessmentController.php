@@ -11,7 +11,7 @@ class PerangkinganAsessmentController extends Controller
     public function index()
     {
         // Ambil semua data sekolah dengan pagination
-        $sekolahs = \App\Models\Sekolah::paginate(10);
+        $sekolahs = \App\Models\Sekolah::all();
 
         // Ambil semua kriteria beserta sub kriterianya
         $kriterias = \App\Models\Kriteria::with('subKriterias')->get();
@@ -60,11 +60,13 @@ class PerangkinganAsessmentController extends Controller
         }
     }
 
-    public function pdf($page = 1)
+    public function pdf()
     {
         // Ambil semua data sekolah
-        $sekolahs = \App\Models\Sekolah::paginate(10, ['*'], 'page', $page);
-        $totalSekolah = \App\Models\Sekolah::count(); // Hitung total data
+        $sekolahs = \App\Models\Sekolah::all();
+
+        // Ambil total data sekolah
+        $totalSekolah = $sekolahs->count();
 
         // Ambil semua kriteria beserta sub kriterianya
         $kriterias = \App\Models\Kriteria::with('subKriterias')->get();
@@ -102,10 +104,7 @@ class PerangkinganAsessmentController extends Controller
         // Load view dan kirim data ke PDF
         $pdf = PDF::loadView('admin.perangkingan-asessment.pdf', [
             'skorAkhirSekolah' => $skorAkhirSekolah,
-            'page' => $page,
             'totalSekolah' => $totalSekolah,
-            'perPage' => $sekolahs->perPage(),
-            'currentPage' => $sekolahs->currentPage(),
         ]);
 
         // Download PDF

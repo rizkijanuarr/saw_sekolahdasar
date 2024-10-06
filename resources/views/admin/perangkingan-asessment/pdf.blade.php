@@ -70,9 +70,7 @@
         </table>
         {{-- <p style="width: 60%; text-align: left; letter-spacing: -1.5px; font-family: 'monospace'">Menampilkan {{ ($currentPage - 1) * $perPage + 1 }} hingga {{ min($currentPage * $perPage, $totalSekolah) }} dari
             {{ $totalSekolah }} hasil</p> --}}
-        <p class="subtitle">Menampilkan {{ ($currentPage - 1) * $perPage + 1 }} hingga
-            {{ min($currentPage * $perPage, $totalSekolah) }} dari
-            {{ $totalSekolah }} hasil</p>
+        <p class="subtitle">Total sekolah: {{ $totalSekolah }}</p>
     </div>
 </body>
 

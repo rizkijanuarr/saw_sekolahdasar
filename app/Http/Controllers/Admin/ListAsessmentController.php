@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\Controller;
 
 class ListAsessmentController extends Controller
 {
@@ -64,6 +65,8 @@ class ListAsessmentController extends Controller
 
     public function store(Request $request)
     {
+        Log::info('Request Data:', $request->all());
+
         $request->validate([
             'sub_kriteria' => 'required|array',
             'sub_kriteria.*.*' => 'exists:sub_kriterias,id',
@@ -71,7 +74,10 @@ class ListAsessmentController extends Controller
 
         foreach ($request->sub_kriteria as $sekolahId => $kriteriaData) {
             foreach ($kriteriaData as $kriteriaId => $subKriteriaId) {
-                // Simpan sub-kriteria tanpa perhitungan
+                if ($subKriteriaId === NULL) {
+                    return redirect()->back()->withErrors(['sub_kriteria.' . $sekolahId . '.' . $kriteriaId => 'Sub Kriteria tidak boleh kosong.']);
+                }
+
                 \App\Models\ListAsessment::updateOrCreate(
                     ['sekolah_id' => $sekolahId, 'kriteria_id' => $kriteriaId],
                     ['sub_kriteria_id' => $subKriteriaId]

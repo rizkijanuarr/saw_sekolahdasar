@@ -23,7 +23,7 @@ class SubKriteria extends Model
 
     public function perhitunganNormalisasiAsessments(): HasMany
     {
-        return $this->hasMany(PerhitunganNormalisasiAsessment::class);
+        return $this->hasMany(\App\Models\PerhitunganNormalisasi::class);
     }
 
     public function perangkinganNormalisasiAsessments(): HasMany
