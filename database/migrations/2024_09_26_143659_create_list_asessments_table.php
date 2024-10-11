@@ -15,9 +15,9 @@ return new class extends Migration
 
         Schema::create('list_asessments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('sekolah_id')->nullable()->constrained();
-            $table->foreignId('kriteria_id')->nullable()->constrained();
-            $table->foreignId('sub_kriteria_id')->nullable()->constrained();
+            $table->foreignId('sekolah_id')->nullable()->constrained('sekolahs')->cascadeOnDelete();
+            $table->foreignId('kriteria_id')->nullable()->constrained('kriterias')->cascadeOnDelete();
+            $table->foreignId('sub_kriteria_id')->nullable()->constrained('sub_kriterias')->cascadeOnDelete();
             $table->timestamps();
         });
 

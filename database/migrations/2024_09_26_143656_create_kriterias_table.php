@@ -15,9 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('kriteria_kode');
             $table->string('kriteria_nama');
-            $table->enum('kriteria_tipe', ["Benefit","Cost"]);
+            $table->enum('kriteria_tipe', ["Benefit", "Cost"]);
             $table->integer('kriteria_bobot');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

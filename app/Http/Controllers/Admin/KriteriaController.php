@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Log;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -70,6 +71,11 @@ class KriteriaController extends Controller
 
     public function destroy(\App\Models\Kriteria $kriterium)
     {
+        \App\Models\SubKriteria::where('kriteria_id', $kriterium->id)->delete();
+        \App\Models\ListAsessment::where('kriteria_id', $kriterium->id)->delete();
+        \App\Models\NormalisasiAsessment::where('kriteria_id', $kriterium->id)->delete();
+        \App\Models\PerhitunganNormalisasi::where('kriteria_id', $kriterium->id)->delete();
+        \App\Models\PerangkinganNormalisasiAsessment::where('kriteria_id', $kriterium->id)->delete();
         $kriterium->delete();
 
         return response()->json(['status' => 'success']);
